@@ -2,12 +2,13 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import logo from '../assets/logo.png'
+import logo from '../assets/logo.png';
+import styles from "../styles/NavBar.module.css"; 
 
 
 const NavBar = () => {
     return (
-        <Navbar expand="md" fixed="top">
+        <Navbar className={styles.NavBar} expand="md" fixed="top">
             <Container>
                 <Navbar.Brand>
                     <img src={logo} height="45"/>
