@@ -4,6 +4,10 @@
     min-height: 100vh;
   }
   
+  .Main {
+    padding-top: 81px;
+  }
+  
   * {
     box-sizing: border-box;
   }
@@ -33,4 +37,9 @@
     cursor: pointer;
     transition: color ease-in-out 0.3s;
     color: #c06014;
+  }
+
+  /* h1 temporario  */
+  h1 {
+    color: #f3f4ed;
   }
