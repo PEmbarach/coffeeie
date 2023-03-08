@@ -1,12 +1,11 @@
-.NavBar {
-    background-color: #536162;
-    border: 1 px solid #f3f4ed;
+.NavBar{
+    background-color: #ffffff;
+    border: 1px solid #dadadf;
 }
-
-.NavLink {
+/*.NavLink {
     padding: 5px;
-}
+} */
 
 .Active i {
-    color: #c06014;
+    color: #5d2417;
 }
