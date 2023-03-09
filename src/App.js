@@ -9,7 +9,7 @@ import SignInForm from "./pages/auth/SignInForm";
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
-export const currentUserContext = createContext()
+export const CurrentUserContext = createContext()
 export const SetCurrentUserContext = createContext()
 
 
