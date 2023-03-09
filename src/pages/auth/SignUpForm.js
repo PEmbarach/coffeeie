@@ -5,7 +5,7 @@ import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
-import { Form, Button, Image, Col, Row, Container } from "react-bootstrap";
+import { Form, Button, Image, Col, Row, Container, Alert } from "react-bootstrap";
 import axios from "axios";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
@@ -56,6 +56,9 @@ const SignUpForm = () => {
                     onChange={handleChange}
                 />
             </Form.Group>
+            {errors.username?.map((message, idx) =>
+              <Alert variant="warining" key={idx}>{message}</Alert>
+            )}
 
             <Form.Group controlId="password1">
                 <Form.Label className="d-none">Password</Form.Label>
@@ -68,6 +71,10 @@ const SignUpForm = () => {
                     onChange={handleChange}
                 />
             </Form.Group>
+            {errors.password1?.map((message, idx) =>
+              <Alert variant="warining" key={idx}>{message}</Alert>
+            )}
+
 
             <Form.Group controlId="password2">
                 <Form.Label className="d-none">Confirm password</Form.Label>
@@ -80,13 +87,20 @@ const SignUpForm = () => {
                     onChange={handleChange}
                 />
             </Form.Group>
-
+            {errors.password2?.map((message, idx) =>
+              <Alert variant="warining" key={idx}>{message}</Alert>
+            )}
 
             <Button 
                 className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`}
                 type="submit">
                 Sign up
             </Button>
+            {errors.non_field_errors?.map((message, idx) =>
+              <Alert variant="warining" key={idx} className="mt-3">
+                {message}
+              </Alert>
+            )}
             </Form>
 
         </Container>
