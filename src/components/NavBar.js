@@ -12,7 +12,7 @@ const NavBar = () => {
   const setCurrentUser = useSetCurrentUser();
 
   const [expanded, setExpanded] = useState(false);
-  const ref = useRef
+  const ref = useRef(null)
 
   const handleSignOut = async () => {
     try {
@@ -92,6 +92,7 @@ const NavBar = () => {
         </NavLink>
         {currentUser && addPostIcon}
         <Navbar.Toggle
+         ref={ref}
           onClick={() => setExpanded(!expanded)} 
           aria-controls="basic-navbar-nav"
         />
