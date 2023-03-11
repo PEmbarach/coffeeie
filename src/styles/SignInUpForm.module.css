@@ -20,7 +20,7 @@
   text-align: center;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #5d2417;
+  color: #424642;
 }
 
 .Link {
@@ -31,7 +31,16 @@
 }
 
 .Link span {
-  color: #5d2417;
+  color: #c06014;
+}
+
+.Link p {
+  color: #424642;
+  margin-top: 12px;
+}
+
+.Link p:hover {
+  color:#c06014
 }
 
 .Container {
