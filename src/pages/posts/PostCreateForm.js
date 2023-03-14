@@ -5,24 +5,99 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
+import InputGroup from 'react-bootstrap/InputGroup';
+import { FormControl } from "react-bootstrap";
 
-// import Upload from "../../assets/upload.png";
+import Upload from "../../assets/upload.png";
 
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
+import Asset from "../../components/Asset";
+import { Image } from "react-bootstrap";
 
 function PostCreateForm() {
 
   const [errors, setErrors] = useState({});
 
+  const [postData, setPostData] = useState({
+    image: "",
+    title: "",
+    rate: "",
+    price: "",
+    location: "",
+  });
+
+  const { image, title, rate, price, location } = postData;
+
+  const handleChange = (event) => {
+    setPostData({
+      ...postData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleChangeImage = (event) => {
+    if (event.target.files.length) {
+      URL.revokeObjectURL(image);
+      setPostData({
+        ...postData,
+        image: URL.createObjectURL(event.target.files[0]),
+      });
+    }
+  };
 
   const textFields = (
     <div className="text-center">
-      {/* Add your form fields here */}
-
-    
-    
+      <Form.Group>
+        <Form.Label>Title</Form.Label>
+        <Form.Control
+          type="text"
+          name="title"
+          value={title}
+          onChange={handleChange}
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Rate</Form.Label>
+        <Form.Control 
+          name="rate"
+          value={rate}
+          onChange={handleChange}
+          as="select" 
+          size="sm" 
+          custom
+        >
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </Form.Control>      
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Location</Form.Label>
+        <Form.Control
+          type="text"
+          name="location"
+          value={location}
+          onChange={handleChange}
+        />
+      </Form.Group>
+        <Form.Label>Price</Form.Label>
+        <InputGroup 
+          className="mb-3"
+        >
+          <InputGroup.Prepend>
+            <InputGroup.Text>€</InputGroup.Text>
+          </InputGroup.Prepend>
+          <FormControl
+            name="price"
+            value={price}
+            onChange={handleChange}          
+            placeholder="00.00"
+          />
+        </InputGroup>
       <Button
         className={`${btnStyles.Button} ${btnStyles.Blue}`}
         onClick={() => {}}
@@ -48,7 +123,7 @@ function PostCreateForm() {
                   className="d-flex justify-content-center"
                   htmlFor="image-upload"
                 >
-                  ASSET
+                  <Asset src={Upload} message="Click or tap to upload an image" />
                 </Form.Label>
 
             </Form.Group>
