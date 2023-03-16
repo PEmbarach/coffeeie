@@ -8,9 +8,14 @@ import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import PostCreateForm from "./pages/posts/PostCreateForm";
 import PostPage from "./pages/posts/PostPage";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useState } from "react";
 
 
 function App() {
+  const { id } = useParams();
+  const [post, serPost] = useState({ results: [] });
+
   return (
         <div className={styles.App}>
           <NavBar />
