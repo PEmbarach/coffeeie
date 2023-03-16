@@ -9,12 +9,27 @@ import SignInForm from "./pages/auth/SignInForm";
 import PostCreateForm from "./pages/posts/PostCreateForm";
 import PostPage from "./pages/posts/PostPage";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { axiosReq } from "./api/axiosDefaults";
 
 
 function App() {
   const { id } = useParams();
   const [post, serPost] = useState({ results: [] });
+
+  useEffect (() => {
+    const handleMount = async () => {
+      try {
+        const [{data: post}] = await Promise.all([
+          axiosReq.get(`/posts/${id}`),
+        ])
+        setPost({results: [post]})
+        console.log(post)
+      } catch(err){
+        console.log(err)
+      }
+    }
+  })
 
   return (
         <div className={styles.App}>
