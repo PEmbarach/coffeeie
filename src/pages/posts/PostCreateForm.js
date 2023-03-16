@@ -7,6 +7,7 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import InputGroup from 'react-bootstrap/InputGroup';
 import { FormControl } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
 
 import Upload from "../../assets/upload.png";
 
@@ -17,6 +18,7 @@ import Asset from "../../components/Asset";
 import { Image } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
+
 
 function PostCreateForm() {
   const [errors, setErrors] = useState({});
@@ -90,6 +92,11 @@ function PostCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors?.title?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
       <Form.Group>
         <Form.Label>Rate</Form.Label>
         <Form.Control 
@@ -107,6 +114,11 @@ function PostCreateForm() {
           <option>5</option>
         </Form.Control>      
       </Form.Group>
+      {errors?.rate?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
       <Form.Group>
         <Form.Label>Location</Form.Label>
         <Form.Control
@@ -116,6 +128,12 @@ function PostCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors?.location?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+      <Form.Group>
         <Form.Label>Price</Form.Label>
         <InputGroup 
           className="mb-3"
@@ -130,6 +148,12 @@ function PostCreateForm() {
             placeholder="00.00"
           />
         </InputGroup>
+      </Form.Group>
+      {errors?.price?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
       <Button
         className={`${btnStyles.Button} ${btnStyles.Blue}`}
         onClick={() => history.goBack()}
