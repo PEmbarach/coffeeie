@@ -62,8 +62,15 @@ function PostCreateForm() {
     formData.append('location', location)
 
     try {
-      const {data} = await axiosReq.post('/posts/', formData);
-      history.push(`posts/${data.id}`)
+      const {data} = 
+      await axiosReq.post('/posts/', formData,);
+      await axiosReq.post('/rate/', formData,);
+      await axiosReq.post('/details/', formData,);
+      history.push(
+        `posts/${data.id}`,
+        `rate/${data.id}`,
+        `details/${data.id}`
+      )
     } catch(err){
       console.log(err)
       if (err.response?.status !== 401){
