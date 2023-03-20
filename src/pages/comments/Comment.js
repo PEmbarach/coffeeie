@@ -13,12 +13,25 @@ const Comment = (props) => {
     owner,
     updated_at,
     content,
+    id,
+    setPost,
+    setComments,
   } = props;
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
 
-
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/comments/${id}/`);
+      setPost((prevPost) => ({
+        results: [
+          {
+            ...prevPost.results[0],
+            comments_count: prevPost.results[0].comments_count - 1,
+          },
+        ],
+      }));
 
   return (
     <div>
