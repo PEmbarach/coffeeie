@@ -6,8 +6,7 @@ import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
-import CommentCreateForm from "../comments/CommentCreateForm";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
+
 
 const Post = (props) => {
   const {
@@ -32,15 +31,11 @@ const Post = (props) => {
 
   const handleEdit = () => {
     history.push(`/posts/${id}/edit`);
-    history.push(`/rate/${id}/edit`);
-    history.push(`/details/${id}/edit`);
   };
 
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/posts/${id}/`);
-      await axiosRes.delete(`/rate/${id}/`);
-      await axiosRes.delete(`/details/${id}/`);
       history.goBack();
     } catch (err) {
       console.log(err);
