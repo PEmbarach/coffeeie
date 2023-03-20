@@ -5,6 +5,8 @@ import Avatar from "../../components/Avatar";
 import { MoreDropdown } from '../../components/MoreDropdown';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import styles from '../../styles/Comment.module.css';
+import { axiosRes } from "../../api/axiosDefaults";
+
 
 const Comment = (props) => {
   const {
@@ -33,6 +35,13 @@ const Comment = (props) => {
         ],
       }));
 
+      setComments((prevComments) => ({
+        ...prevComments,
+        results: prevComments.results.filter((comment) => comment.id !== id),
+      }));
+    } catch (err) {}
+  };
+  
   return (
     <div>
         <hr />
@@ -46,11 +55,11 @@ const Comment = (props) => {
                 <p>{content}</p>
             </Media.Body>
             {is_owner && (
-              <MoreDropdown handleEdit={() => {}} handleDelete={() => {}} />
+              <MoreDropdown handleEdit={() => {}} handleDelete={handleDelete} />
             )}
         </Media>
     </div>
   )
 };
 
-export default Comment
+export default Comment;
