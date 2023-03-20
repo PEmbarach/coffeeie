@@ -9,12 +9,9 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import { FormControl } from "react-bootstrap";
 import Alert from "react-bootstrap/Alert";
 
-import Upload from "../../assets/upload.png";
-
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import Asset from "../../components/Asset";
 import { Image } from "react-bootstrap";
 import { useHistory, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -41,9 +38,9 @@ function PostEditForm() {
     const handleMount = async () => {
         try {
             const { data } = await axiosReq.get(`/posts/${id}/`);
-            const { title, content, image, is_owner, rate} = data;
+            const { image, title, rate, price, location, is_owner } = data;
 
-            is_owner ? setPostData({ title, content, image, rate }) : history.push("/");
+            is_owner ? setPostData({ image, title, rate, price, location }) : history.push("/");
         } catch (err) {
             console.log(err);
         }
@@ -71,22 +68,24 @@ function PostEditForm() {
   const handleSubmit = async (event) => {
     event.preventDefault()
     const formData = new FormData();
+    
 
-    formData.append('image', imageInput.current.files[0])
-    formData.append('title', title)
-    formData.append('rate', rate)
-    formData.append('price', price)
-    formData.append('location', location)
+    if (imageInput?.current?.files[0]) {
+        formData.append('image', imageInput.current.files[0])
+        formData.append('title', title)
+        formData.append('rate', rate)
+        formData.append('price', price)
+        formData.append('location', location)
+    }
 
     try {
-      const {data} = 
-      await axiosReq.post('/posts/', formData,);
-      await axiosReq.post('/rate/', formData,);
-      await axiosReq.post('/details/', formData,);
+      await axiosReq.post(`/posts/${id}/`, formData,);
+      await axiosReq.post(`/rate/${id}/`, formData,);
+      await axiosReq.post(`/details/${id}`, formData,);
       history.push(
-        `posts/${data.id}`,
-        `rate/${data.id}`,
-        `details/${data.id}`
+        `posts/${id}`,
+        `rate/${id}`,
+        `details/${id}`
       )
     } catch(err){
       console.log(err)
@@ -176,7 +175,7 @@ function PostEditForm() {
         cancel
       </Button>
       <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-        create
+        save
       </Button>
     </div>
   );
@@ -189,33 +188,22 @@ function PostEditForm() {
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
           >
             <Form.Group className="text-center">
-              { image ? (
-                <>
-                  <figure>
+                <figure>
                     <Image className={appStyles.Image} src={image} rounded />
-                  </figure>
-                  <div>
+                </figure>
+                <div>
                     <Form.Label
-                      className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
-                      htmlFor="image-upload"
+                        className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
+                        htmlFor="image-upload"
                     >
-                      Change the image
+                        Change the image
                     </Form.Label>
-                  </div>
-                </>
-              ) : (
-                <Form.Label
-                  className="d-flex justify-content-center"
-                  htmlFor="image-upload"
-                >
-                  <Asset src={Upload} message="Click or tap to upload an image" />
-                </Form.Label>
-              )}
+                </div>
                 <Form.File
-                  id="image-upload"
-                  accept="image/*"
-                  onChange={handleChangeImage}
-                  ref={imageInput}
+                    id="image-upload"
+                    accept="image/*"
+                    onChange={handleChangeImage}
+                    ref={imageInput}
                 />
             </Form.Group>
             <div className="d-md-none">{textFields}</div>
