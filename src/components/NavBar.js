@@ -57,11 +57,18 @@ const NavBar = () => {
     </NavLink>
     <NavLink
       className={styles.NavLink}
+      activeClassName={styles.Active}
+      to="/contact/"
+      >
+        <i className="fa-solid fa-envelope"></i>Contact Us
+    </NavLink>
+
+    <NavLink
+      className={styles.NavLink}
       to={`/profiles/${currentUser?.profile_id}`}
     >
       <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
     </NavLink>
-
   </>
   const loggedOutIcons =  (
     <>

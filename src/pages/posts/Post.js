@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../../styles/Post.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Card, CardGroup, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
@@ -75,9 +75,10 @@ const Post = (props) => {
   };
 
   return (
+    <CardGroup>
     <Card className={styles.Post}>
       <Card.Body>
-        <Media className="align-items-center justify-content-between">
+        <Media className="md={{ span: 3, offset: 3 }} justify-content-between">
           <Link to={`/profiles/${profile_id}`}>
             <Avatar src={profile_image} height={55} />
             {owner}
@@ -97,7 +98,7 @@ const Post = (props) => {
         <Card.Img src={image} alt={title} />
       </Link>
       <Card.Body>
-        {title && <Card.Title className="text-center">{title}</Card.Title>}
+        {/* {title && <Card.Title className="text-center">{title}</Card.Title>} */}
         {content && <Card.Text>{content}</Card.Text>}
         <div className={styles.PostBar}>
           {is_owner ? (
@@ -131,6 +132,7 @@ const Post = (props) => {
         </div>
       </Card.Body>
     </Card>
+    </CardGroup>
   );
 };
 
