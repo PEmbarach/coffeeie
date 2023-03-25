@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "../../styles/ContactConfirmation.module.css";
 import appStyles from "../../App.module.css";
-import { useRedirect } from "../../hooks/useRedirect";
 
 import {
   Col,
@@ -11,7 +10,6 @@ import {
 
 
 const Confirmation = () => {
-  useRedirect("loggedOut");
   return (    
     <Row className={styles.Row}>
       

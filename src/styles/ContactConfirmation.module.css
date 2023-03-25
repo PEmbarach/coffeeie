@@ -7,7 +7,7 @@
     height: 900px;
     margin: auto;
     padding: 80px 15px 0 15px;
-    background-color: #D9F4C7;
+    background-color: red;
   }
 
 .Header {
@@ -19,5 +19,5 @@
     text-align: center;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: #A66A24;
+    color: #c06014;
   }

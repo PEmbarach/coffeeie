@@ -130,7 +130,7 @@ const ContactForm = () => {
             ))}
 
             <Button
-            className={btnStyles.Button}
+            className={`${btnStyles.Button} ${btnStyles.Orange}`}
             type="submit"
             >
               Submit
