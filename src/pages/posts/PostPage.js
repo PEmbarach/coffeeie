@@ -9,7 +9,6 @@ import appStyles from "../../App.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
 import Post from "./Post";
 import Comment from "../comments/Comment";
-import Rate from "../rate/Rate";
 
 import CommentCreateForm from "../comments/CommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -25,20 +24,17 @@ function PostPage() {
     const currentUser = useCurrentUser();
     const profile_image = currentUser?.profile_image;
     const [comments, setComments] = useState({ results: [] });
-    const [rate, setRate] = useState({ results: [] });
   
     useEffect (() => {
       const handleMount = async () => {
         try {
-          const [{data: post}, {data: comments}, {data: rate}] = 
+          const [{data: post}, {data: comments}] = 
           await Promise.all([
             axiosReq.get(`/posts/${id}`),
             axiosReq.get(`/comments/?post=${id}`),
-            axiosReq.get(`/rate/${id}`),
           ])
           setPost({results: [post]});
           setComments(comments);
-          setRate(rate);
         } catch(err){
           console.log(err);
         }
@@ -53,7 +49,6 @@ function PostPage() {
         <p>Popular profiles for mobile</p>
         <Container  className={`${appStyles.Content} p-4 `}> 
           <Post {...post.results[0]} setPosts={setPost} postPage/>
-          <Rate {...rate.results[0]} setRate={setRate}/>
         </Container>
         <Container className={`mt-3 ${appStyles.Content}`}>
           {currentUser ? (
