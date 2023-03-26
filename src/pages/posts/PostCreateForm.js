@@ -54,30 +54,24 @@ function PostCreateForm() {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
     const formData = new FormData();
 
-    formData.append('image', imageInput.current.files[0])
-    formData.append('title', title)
-    formData.append('rate', rate)
-    formData.append('price', price)
-    formData.append('location', location)
+    formData.append("title", title);
+    // formData.append("content", content);
+    formData.append("image", imageInput.current.files[0]);
+    formData.append('rate', rate);
+    formData.append('location', location);
+    formData.append('price', price);
 
     try {
-      const {data} = 
-      await axiosReq.post('/posts/', formData,);
-      await axiosReq.post('/rate/', formData,);
-      await axiosReq.post('/details/', formData,);
-      history.push(
-        `posts/${data.id}`,
-        `rate/${data.id}`,
-        `details/${data.id}`
-      )
-    } catch(err){
-      console.log(err)
-      if (err.response?.status !== 401){
-        setErrors(err.response?.data)
+      const { data } = await axiosReq.post("/posts/", formData);
+      history.push(`/posts/${data.id}`);
+    } catch (err) {
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
       }
+      console.log(err)
     }
   };
 
@@ -107,11 +101,11 @@ function PostCreateForm() {
           size="sm" 
           custom
         >
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
+          <option>1 - Very Poor</option>
+          <option>2 - Poor</option>
+          <option>3 - Fair</option>
+          <option>4 - Good</option>
+          <option>5 - Excellent</option>
         </Form.Control>      
       </Form.Group>
       {errors?.rate?.map((message, idx) => (

@@ -17,10 +17,10 @@ import { axiosReq } from "../../api/axiosDefaults";
 
 const ContactForm = () => {
   const [contactData, setContactData] = useState({
-    firts_name: "",
+    name: "",
     last_name: "",
     email: "",
-    subject: "",
+    subject:"",
     content: "",
   });
 
@@ -46,7 +46,7 @@ const ContactForm = () => {
   };
 
   return (    
-    <Row className={styles.Row}>
+    <Row classame={styles.Row}>
       
       <Col>
         <Container className={`${appStyles.Content} p-4 `}>
@@ -106,12 +106,11 @@ const ContactForm = () => {
                 onChange={handleChange}
               />
             </Form.Group>
-            {errors.content?.map((message, idx) => (
+            {errors.email?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
                 {message}
               </Alert>
             ))}
-
 
             <Form.Group>
               <Form.Label>Message</Form.Label>
@@ -130,7 +129,7 @@ const ContactForm = () => {
             ))}
 
             <Button
-            className={`${btnStyles.Button} ${btnStyles.Orange}`}
+            className={`${btnStyles.Button} ${btnStyles.Orange} btn`}
             type="submit"
             >
               Submit
