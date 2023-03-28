@@ -6,7 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import InputGroup from 'react-bootstrap/InputGroup';
-import { FormControl } from "react-bootstrap";
+import FormControl from "react-bootstrap/FormControl";
 import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
 
@@ -31,7 +31,7 @@ function PostCreateForm() {
   const [postData, setPostData] = useState({
     image: "",
     title: "",
-    rate: "",
+    rate: "1",
     price: "",
     location: "",
   });
@@ -65,9 +65,9 @@ function PostCreateForm() {
     formData.append("title", title);
     // formData.append("content", content);
     formData.append("image", imageInput.current.files[0]);
-    formData.append('rate', rate);
-    formData.append('location', location);
-    formData.append('price', price);
+    formData.append("rate", rate);
+    formData.append("location", location);
+    formData.append("price", price);
 
     try {
       const { data } = await axiosReq.post("/posts/", formData);
@@ -100,17 +100,17 @@ function PostCreateForm() {
         <Form.Label>Rate</Form.Label>
         <Form.Control 
           name="rate"
-          value={rate}
+          // value={rate}
           onChange={handleChange}
           as="select" 
           size="sm" 
           custom
         >
-          <option>1 - Very Poor</option>
-          <option>2 - Poor</option>
-          <option>3 - Fair</option>
-          <option>4 - Good</option>
-          <option>5 - Excellent</option>
+          <option value="1">1 - Very Poor</option>
+          <option value="2">2 - Poor</option>
+          <option value="3">3 - Fair</option>
+          <option value="4">4 - Good</option>
+          <option value="5">5 - Excellent</option>
         </Form.Control>      
       </Form.Group>
       {errors?.rate?.map((message, idx) => (

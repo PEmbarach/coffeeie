@@ -14,6 +14,8 @@ import ProfilePage from "./pages/profiles/ProfilePage";
 import UsernameForm from "./pages/profiles/UsernameForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
+import ContactForm from './pages/contact/ContactForm';
+import Confirmation from './pages/contact/Confirmation';
 
 function App() {
   const currentUser = useCurrentUser();
@@ -72,7 +74,8 @@ function App() {
             path="/profiles/:id/edit"
             render={() => <ProfileEditForm />}
           />
-
+          <Route exact path="/contact" render={() => <ContactForm />} />
+          <Route exact path="/confirmation" render={() => <Confirmation />} />
           <Route render={() =><p>Page not Found!</p>} />
         </Switch>
       </Container>

@@ -21,10 +21,10 @@ const ContactForm = () => {
     last_name: "",
     email: "",
     subject:"",
-    content: "",
+    message: "",
   });
 
-  const { name, last_name, email, subject, content } = contactData;
+  const { name, last_name, email, subject, message } = contactData;
   const [errors, setErrors] = useState({});
   const history = useHistory();
 
@@ -37,10 +37,12 @@ const ContactForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log(contactData)
     try {
       await axiosReq.post("/contact/", contactData);
       history.push("/confirmation");
     } catch (err) {
+      console.log('ERROR in submit: ', err)
       setErrors(err.response?.data);
     }
   };
@@ -49,7 +51,7 @@ const ContactForm = () => {
     <Row classame={styles.Row}>
       
       <Col>
-        <Container className={`${appStyles.Content} p-4 `}>
+        <Container className={`${appStyles.Message} p-4 `}>
           <h1 className={styles.Header}>Contact Us</h1>
           <Form onSubmit={handleSubmit}>
             <Form.Group>
@@ -117,12 +119,12 @@ const ContactForm = () => {
               <Form.Control
                 as="textarea"
                 rows={4}
-                name="content"
-                value={content}
+                name="message"
+                value={message}
                 onChange={handleChange}
               />
             </Form.Group>
-            {errors.content?.map((message, idx) => (
+            {errors.message?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
                 {message}
               </Alert>
