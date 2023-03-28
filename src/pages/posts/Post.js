@@ -31,6 +31,12 @@ const Post = (props) => {
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
 
+  const imageStyle = {
+    width: '400px',
+    height: '400px',
+    maxWidth: '100%'
+  };
+
   const handleEdit = () => {
     history.push(`/posts/${id}/edit`);
   };
@@ -99,7 +105,7 @@ const Post = (props) => {
       <CardGroup>
         <Card.Body xs={12} md={8}  >
             <Link to={`/posts/${id}`} >
-              <Card.Img src={image} alt={title}  style={{ width: 500, height: 400 }}/>
+              <Card.Img src={image} alt={title}  style={imageStyle}/>
             </Link>
           </Card.Body>
         <Card.Body xs={6} md={4} >
