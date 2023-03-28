@@ -9,10 +9,10 @@
 }
 
 .Content {
-  background-color: #F4F9F9;
+  background-color: #e4d3c1;
   padding: 10px;
   border-radius: 2px;
-  border: 1px solid #C8C2BC;
+  border: 1px solid #8f755f;
 }
 
 .FillerImage {
@@ -32,7 +32,7 @@
 }
 
 a {
-  color: #f3f4ed;
+  color: #37251b;
   transition: color ease-in-out 0.3s;
 }
 
@@ -51,7 +51,7 @@ input[type="file"] {
 }
 
 i {
-  color: #f3f4ed;
+  color: #37251b;
   font-size: 1.6rem;
   padding: 12px;
   vertical-align: middle;

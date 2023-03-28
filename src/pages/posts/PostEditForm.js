@@ -42,7 +42,7 @@ function PostEditForm() {
 
             is_owner ? setPostData({ image, title, rate, price, location }) : history.push("/");
         } catch (err) {
-            console.log(err);
+            // console.log(err);
         }
     };
     handleMount();
@@ -88,7 +88,7 @@ function PostEditForm() {
         `details/${id}`
       )
     } catch(err){
-      console.log(err)
+      // console.log(err)
       if (err.response?.status !== 401){
         setErrors(err.response?.data)
       }

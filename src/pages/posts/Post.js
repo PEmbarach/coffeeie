@@ -18,8 +18,10 @@ const Post = (props) => {
     likes_count,
     like_id,
     title,
-    content,
+    rate,
     image,
+    price,
+    location,
     updated_at,
     postPage,
     setPosts,
@@ -38,7 +40,7 @@ const Post = (props) => {
       await axiosRes.delete(`/posts/${id}/`);
       history.goBack();
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -54,7 +56,7 @@ const Post = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -70,7 +72,7 @@ const Post = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -78,7 +80,7 @@ const Post = (props) => {
     <CardGroup>
     <Card className={styles.Post}>
       <Card.Body>
-        <Media className="md={{ span: 3, offset: 3 }} justify-content-between">
+        <Media className="align-items-center justify-content-between">
           <Link to={`/profiles/${profile_id}`}>
             <Avatar src={profile_image} height={55} />
             {owner}
@@ -94,43 +96,49 @@ const Post = (props) => {
           </div>
         </Media>
       </Card.Body>
-      <Link to={`/posts/${id}`}>
-        <Card.Img src={image} alt={title} />
-      </Link>
-      <Card.Body>
-        {/* {title && <Card.Title className="text-center">{title}</Card.Title>} */}
-        {content && <Card.Text>{content}</Card.Text>}
-        <div className={styles.PostBar}>
-          {is_owner ? (
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>You can't like your own post!</Tooltip>}
-            >
-              <i className="far fa-heart" />
-            </OverlayTrigger>
-          ) : like_id ? (
-            <span onClick={handleUnlike}>
-              <i className={`fas fa-heart ${styles.Heart}`} />
-            </span>
-          ) : currentUser ? (
-            <span onClick={handleLike}>
-              <i className={`far fa-heart ${styles.HeartOutline}`} />
-            </span>
-          ) : (
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>Log in to like posts!</Tooltip>}
-            >
-              <i className="far fa-heart" />
-            </OverlayTrigger>
-          )}
-          {likes_count}
-          <Link to={`/posts/${id}`}>
-            <i className="far fa-comments" />
-          </Link>
-          {comments_count}
-        </div>
-      </Card.Body>
+      <CardGroup>
+        <Card.Body xs={12} md={8}  >
+            <Link to={`/posts/${id}`} >
+              <Card.Img src={image} alt={title}  style={{ width: 500, height: 400 }}/>
+            </Link>
+          </Card.Body>
+        <Card.Body xs={6} md={4} >
+          {title && <Card.Title className={styles.card} >{title}</Card.Title>}
+          {rate && <Card.Text className={styles.card}>{rate}</Card.Text>}
+          {price && <Card.Text className={styles.card}>€ {price}</Card.Text>}
+          {location && <Card.Text className={styles.card}>{location}</Card.Text>}
+          <div className={styles.PostBar}>
+            {is_owner ? (
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>You can't like your own post!</Tooltip>}
+              >
+                <i className="far fa-heart" />
+              </OverlayTrigger>
+            ) : like_id ? (
+              <span onClick={handleUnlike}>
+                <i className={`fas fa-heart ${styles.Heart}`} />
+              </span>
+            ) : currentUser ? (
+              <span onClick={handleLike}>
+                <i className={`far fa-heart ${styles.HeartOutline}`} />
+              </span>
+            ) : (
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>Log in to like posts!</Tooltip>}
+              >
+                <i className="far fa-heart" />
+              </OverlayTrigger>
+            )}
+            {likes_count}
+            <Link to={`/posts/${id}`}>
+              <i className="far fa-comments" />
+            </Link>
+            {comments_count}
+          </div>
+        </Card.Body>
+      </CardGroup>
     </Card>
     </CardGroup>
   );
