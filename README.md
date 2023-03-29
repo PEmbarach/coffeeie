@@ -20,23 +20,17 @@ The live link for "The Red Crayon" can be found [HERE](https://project5-red-cray
   + [Current User Goals](#current-user-goals "Current User Goals")
   + [New User Goals](#new-user-goals "New User Goals")
 + [User Stories](#user-stories "User Stories")
-  + [Admin stories](#admin-stories "Admin stories")
-  + [Artist stories](#artist-stories "Artist stories")
-  + [Visitor stories](#visitor-stories "Visitor stories")
 + [Design](#design "Design")
   + [Colour Scheme](#colour-scheme "Colour Scheme")
   + [Typography](#typography "Typography")
-  + [Imagery](#imagery "Imagery")
 + [Features](#features "Features")
   + [Existing Features](#existing-features "Existing Features")
-  + [C.R.U.D](#crud "C.R.U.D")
-+ [Testing](#testing "Testing")
+  + [Testing](#testing "Testing")
   + [Validator Testing](#validator-testing "Validator Testing")
   + [Unfixed Bugs](#unfixed-bugs "Unfixed Bugs")
 + [Technologies Used](#technologies-used "Technologies Used")
   + [Main Languages Used](#main-languages-used "Main Languages Used")
-  + [Frameworks, Libraries & Programs Used](#frameworks-libraries-programs-used "Frameworks, Libraries & Programs Used")
-+ [Components](#oomponents "Components")
++ [Components](#components "Components")
 + [Deployment](#deployment "Deployment")
 + [Credits](#credits "Credits")
   + [Content](#content "Content")
@@ -198,7 +192,7 @@ s
 4. Tested the site opens in Brave, Chrome, Safari, Opera & on a mobile device without issues.
 
 ### Unfixed Bugs
-- When creating a new post, if the user uploads an image larger than allowed, an error occurs, not informing the user, who must upload an image within the allowed size. The error is a 400 bad request, being possible to see only in the network tab that this is related to the size of the image. The error was identified by my mentor Martina.
+- An error was identified by Martina (mentor) that froze the page when an image with more than 2MB was loaded, generating a 400 bad request. I identified the error, which is the lack of an error alert in PostCreateForm.js. The same was fixed by following the Moments Walkthrough lessons.
 
 ![400 error](src/assets/readme-images/400%20error.png)
 
@@ -231,6 +225,7 @@ Several components have been implemented within this project that have been reus
 6. ToggleCollapse.js : whilst this component has only been applied to the NavBarMini, it could in theory be applied to additional dropdown menus installed into the site in the future to allow for the automatic collapse of an element upon mouse click.
 7. useRedirect.js : redirects a user to another page if they are not authorised to be on the page they are trying to access.
 8. utils.js : supplies functionality to all of the components that utilise the Infinite Scroll.
+
 
 ## Deployment
 The site was deployed to Heroku. The steps to deploy are as follows:
@@ -284,5 +279,3 @@ web: serve -s build
 ### Media
 - 404 Error Graphic from 
 - Images for the Articles, Events & Posts made on the site have been accumulated from numerous sources on Twitter & Instagram. I do not have the information of the original content creator for these memes.
-
-[Back to the top](#coffeie)
