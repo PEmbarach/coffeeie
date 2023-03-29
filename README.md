@@ -9,7 +9,7 @@ Coffeeie is a community for coffee lovers. With the aim of sharing experiences a
 
 ![Site view across devices](src/assets/readme-images/amiresponsive.png)
 
-The live link for "The Red Crayon" can be found [HERE](https://project5-red-crayon.onrender.com)
+The live link for "Coffeie" can be found [HERE](https://project5-red-crayon.onrender.com)
 
 ## Table of Contents
 + [UX](#ux "UX")
