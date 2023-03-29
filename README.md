@@ -167,15 +167,15 @@ All fonts were obtained from the Google Fonts library. I chose the following fon
 1. SignUpForm gives 400 error:
  - Resolved by changing `password` to `password1` in form fields & variable keys.
 
-3. CRUD functionality has been tested for each of the following: Posts | Contact | Comments | Likes | Follow | Profile
+2. CRUD functionality has been tested for each of the following: Posts | Contact | Comments | Likes | Follow | Profile
  - Likes & Follow may only be created & deleted
  - Profile may only be updated
-4. All nav links open to the correct page.
-6. Pages intended for logged-in users only will redirect logged-out users back to the home page.
-7. Users attempting to edit content that they did not publish are redirected back to the home page.
-8. Users are able to create a new account.
-9. Users with an existing account are able to log in.
-10. Each user has the ability to log out.
+3. All nav links open to the correct page.
+4. Pages intended for logged-in users only will redirect logged-out users back to the home page.
+5. Users attempting to edit content that they did not publish are redirected back to the home page.
+6. Users are able to create a new account.
+7. Users with an existing account are able to log in.
+8. Each user has the ability to log out.
 
 ### Validator Testing
 1. CSS files pass through the [Jigsaw validator](https://jigsaw.w3.org/css-validator/) with no issues found.
