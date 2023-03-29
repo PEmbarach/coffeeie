@@ -9,7 +9,7 @@ Coffeeie is a community for coffee lovers. With the aim of sharing experiences a
 
 ![Site view across devices](src/assets/readme-images/amiresponsive.png)
 
-The live link for "Coffeie" can be found [HERE](https://project5-red-crayon.onrender.com)
+The live link for "Coffeie" can be found [HERE](https://coffeeie-p5.herokuapp.com/)
 
 ## Table of Contents
 + [UX](#ux "UX")
@@ -51,7 +51,7 @@ Anyone who enjoys good coffee or is interested in coffee culture.
 The social network-style layout presents posts from different users, allowing interaction between them through likes, comments and following your favorite users or saving posts of interest.
 
 ### Current User Goals:
-To keep users coming back again & again to see what is new in terms of news & events, as well as to follow up with other users that they follow.
+Create new posts regularly, seeking interaction with other users.
 
 ### New User Goals:
 To engage the user in a meaningful way, and encourage them to explore everything that the site has to offer.
@@ -62,9 +62,8 @@ To engage the user in a meaningful way, and encourage them to explore everything
 - To expand the events section & provide a google maps location for each event, so that users may understand in more detail where an even is to be hosted.
 
 ## User Stories
-I have included links to the [GitHub Issues](https://github.com/CluelessBiker/project5-red-crayon/issues) for this project, as well as the [KANBAN board](https://github.com/users/CluelessBiker/projects/2).
+I have included links to the [GitHub Issues](https://github.com/PEmbarach/coffeeie/issues) for this project, as well as the [KANBAN board](https://github.com/users/PEmbarach/projects/6).
 
-Please also find a full list of the Epics, User stories, & story points typed up [HERE](src/assets/userstories.md).
 
 ## Design
 
@@ -109,7 +108,7 @@ This has been uploaded to the Backend README, which can be found [HERE](https://
 ### Typography:
 All fonts were obtained from the Google Fonts library. I chose the following font for the page:
 1. DM Sans
-s
+
 
 ## Features
 
@@ -118,7 +117,7 @@ s
 #### Header + NavBar menu:
 
 ![Header + NavBar](src/assets/readme-images/features/Header%2BNavBar_Desktop.png)
-s
+
 
 ##### Header + NavBar - Mobile:
 
@@ -167,13 +166,11 @@ s
 ### Manual Testing:
 1. SignUpForm gives 400 error:
  - Resolved by changing `password` to `password1` in form fields & variable keys.
-2. 500 server error:
- - Resolved with the aid of tutor support. All database migrations for both the Django project & apps needed to be cleared & remigrated. The precise steps for this have been documented in the README for the deployed backend API.
-3. CRUD functionality has been tested for each of the following: Posts | Articles | Events | Comments | Likes | Follow | Profile
+
+3. CRUD functionality has been tested for each of the following: Posts | Contact | Comments | Likes | Follow | Profile
  - Likes & Follow may only be created & deleted
  - Profile may only be updated
 4. All nav links open to the correct page.
-5. All external links open to a new browser window.
 6. Pages intended for logged-in users only will redirect logged-out users back to the home page.
 7. Users attempting to edit content that they did not publish are redirected back to the home page.
 8. Users are able to create a new account.
