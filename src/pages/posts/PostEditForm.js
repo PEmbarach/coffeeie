@@ -6,15 +6,18 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import InputGroup from 'react-bootstrap/InputGroup';
-import { FormControl } from "react-bootstrap";
+
 import Alert from "react-bootstrap/Alert";
+import Image from "react-bootstrap/Image";
 
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import { Image } from "react-bootstrap";
-import { useHistory, useParams } from "react-router-dom";
+
+import { useHistory, useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
+
+import CurrencyInput from "react-currency-input-field";
 
 
 function PostEditForm() {
@@ -66,31 +69,25 @@ function PostEditForm() {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
     const formData = new FormData();
     
+    formData.append('title', title);
+    formData.append('rate', rate);
+    formData.append('price', price);
+    formData.append('location', location);
 
     if (imageInput?.current?.files[0]) {
-        formData.append('image', imageInput.current.files[0])
-        formData.append('title', title)
-        formData.append('rate', rate)
-        formData.append('price', price)
-        formData.append('location', location)
+        formData.append('image', imageInput.current.files[0]);
     }
 
     try {
-      await axiosReq.post(`/posts/${id}/`, formData,);
-      await axiosReq.post(`/rate/${id}/`, formData,);
-      await axiosReq.post(`/details/${id}`, formData,);
-      history.push(
-        `posts/${id}`,
-        `rate/${id}`,
-        `details/${id}`
-      )
-    } catch(err){
-      // console.log(err)
-      if (err.response?.status !== 401){
-        setErrors(err.response?.data)
+      await axiosReq.put(`/posts/${id}/`, formData);
+      history.push(`/posts/${id}`);
+    } catch (err) {
+      // console.log(err);
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
       }
     }
   };
@@ -155,11 +152,13 @@ function PostEditForm() {
           <InputGroup.Prepend>
             <InputGroup.Text>€</InputGroup.Text>
           </InputGroup.Prepend>
-          <FormControl
+          <CurrencyInput
             name="price"
-            value={price}
-            onChange={handleChange}          
             placeholder="00.00"
+            defaultValue={0}
+            decimalsLimit={2}
+            onValueChange={(price, name) => console.log(price, name)}
+            onChange={handleChange}
           />
         </InputGroup>
       </Form.Group>

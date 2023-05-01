@@ -6,7 +6,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import InputGroup from 'react-bootstrap/InputGroup';
-import FormControl from "react-bootstrap/FormControl";
 import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
 
@@ -22,7 +21,7 @@ import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
 
-
+import CurrencyInput from "react-currency-input-field";
 
 function PostCreateForm() {
   useRedirect('loggedOut');
@@ -40,6 +39,7 @@ function PostCreateForm() {
 
   const imageInput = useRef(null);
   const history = useHistory();
+  // const [ price, setPrice ] = useState(1);
 
   const handleChange = (event) => {
     setPostData({
@@ -58,12 +58,15 @@ function PostCreateForm() {
     }
   };
 
+  // const handleChangePrice = (event) => {
+   
+  // }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
 
     formData.append("title", title);
-    // formData.append("content", content);
     formData.append("image", imageInput.current.files[0]);
     formData.append("rate", rate);
     formData.append("location", location);
@@ -100,7 +103,6 @@ function PostCreateForm() {
         <Form.Label>Rate</Form.Label>
         <Form.Control 
           name="rate"
-          // value={rate}
           onChange={handleChange}
           as="select" 
           size="sm" 
@@ -140,11 +142,13 @@ function PostCreateForm() {
           <InputGroup.Prepend>
             <InputGroup.Text>€</InputGroup.Text>
           </InputGroup.Prepend>
-          <FormControl
+          <CurrencyInput
             name="price"
-            value={price}
-            onChange={handleChange}          
             placeholder="00.00"
+            defaultValue={0}
+            decimalsLimit={2}
+            onValueChange={(price, name) => console.log(price, name)}
+            onChange={handleChange}
           />
         </InputGroup>
       </Form.Group>
