@@ -125,11 +125,7 @@ function PostEditForm() {
           <option>5</option>
         </Form.Control>      
       </Form.Group>
-      {errors?.rate?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
-      ))}
+
       <Form.Group>
         <Form.Label>Location</Form.Label>
         <Form.Control
@@ -139,11 +135,12 @@ function PostEditForm() {
           onChange={handleChange}
         />
       </Form.Group>
-      {errors?.location?.map((message, idx) => (
+      {errors.location?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
       ))}
+      
       <Form.Group>
         <Form.Label>Price</Form.Label>
         <InputGroup 
@@ -155,14 +152,15 @@ function PostEditForm() {
           <CurrencyInput
             name="price"
             placeholder="00.00"
-            defaultValue={0}
+            defaultValue={''}
             decimalsLimit={2}
             onValueChange={(price, name) => console.log(price, name)}
             onChange={handleChange}
+            allowNegativeValue={false}
           />
         </InputGroup>
       </Form.Group>
-      {errors?.price?.map((message, idx) => (
+      {errors?.title?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
@@ -205,6 +203,12 @@ function PostEditForm() {
                     ref={imageInput}
                 />
             </Form.Group>
+            {errors.image?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
+
             <div className="d-md-none">{textFields}</div>
           </Container>
         </Col>

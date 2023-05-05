@@ -39,7 +39,6 @@ function PostCreateForm() {
 
   const imageInput = useRef(null);
   const history = useHistory();
-  // const [ price, setPrice ] = useState(1);
 
   const handleChange = (event) => {
     setPostData({
@@ -58,10 +57,6 @@ function PostCreateForm() {
     }
   };
 
-  // const handleChangePrice = (event) => {
-   
-  // }
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -76,7 +71,6 @@ function PostCreateForm() {
       const { data } = await axiosReq.post("/posts/", formData);
       history.push(`/posts/${data.id}`);
     } catch (err) {
-      // console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -99,6 +93,7 @@ function PostCreateForm() {
           {message}
         </Alert>
       ))}
+
       <Form.Group>
         <Form.Label>Rate</Form.Label>
         <Form.Control 
@@ -115,11 +110,7 @@ function PostCreateForm() {
           <option value="5">5 - Excellent</option>
         </Form.Control>      
       </Form.Group>
-      {errors?.rate?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
-      ))}
+
       <Form.Group>
         <Form.Label>Location</Form.Label>
         <Form.Control
@@ -145,10 +136,11 @@ function PostCreateForm() {
           <CurrencyInput
             name="price"
             placeholder="00.00"
-            defaultValue={0}
+            defaultValue={''}
             decimalsLimit={2}
             onValueChange={(price, name) => console.log(price, name)}
             onChange={handleChange}
+            allowNegativeValue={false}
           />
         </InputGroup>
       </Form.Group>
@@ -157,6 +149,7 @@ function PostCreateForm() {
           {message}
         </Alert>
       ))}
+
       <Button
         className={`${btnStyles.Button} ${btnStyles.Orange}`}
         onClick={() => history.goBack()}
@@ -208,7 +201,7 @@ function PostCreateForm() {
             </Form.Group>
             {errors?.image?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
-                {message}
+                {"Upload an Image"}
               </Alert>
             ))}
 
