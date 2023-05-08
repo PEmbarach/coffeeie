@@ -99,6 +99,7 @@ function PostEditForm() {
         <Form.Control
           type="text"
           name="title"
+          placeholder="Add blend name here!"
           value={title}
           onChange={handleChange}
         />
@@ -131,6 +132,7 @@ function PostEditForm() {
         <Form.Control
           type="text"
           name="location"
+          placeholder="You can add location...(optional)"
           value={location}
           onChange={handleChange}
         />
@@ -151,7 +153,7 @@ function PostEditForm() {
           </InputGroup.Prepend>
           <CurrencyInput
             name="price"
-            placeholder="00.00"
+            placeholder="And price too!(optional)"
             defaultValue={''}
             decimalsLimit={2}
             onValueChange={(price, name) => console.log(price, name)}
